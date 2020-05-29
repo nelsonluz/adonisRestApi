@@ -19,3 +19,7 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+Route.group(()=> {
+  Route.post('usuarios/registro', 'UserController.store');
+  Route.post('usuarios/login', 'UserController.login');
+}).prefix("api/v1/");
