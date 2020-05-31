@@ -22,8 +22,14 @@ Route.get('/', () => {
 Route.group(()=> {
   Route.post('usuarios/registro', 'UserController.store');
   Route.post('usuarios/login', 'UserController.login');
+  // rotas de projetos
   Route.get('projetos', 'ProjetoController.index').middleware('auth');
   Route.post('projetos', 'ProjetoController.create').middleware('auth');
   Route.delete('projetos/:id', 'ProjetoController.deletar').middleware('auth');
   Route.patch('projetos/:id', 'ProjetoController.update').middleware('auth');
+  // rotas de tarefas
+  Route.get('projetos/:id/tarefas', 'TarefaController.index').middleware('auth');
+  Route.post('projetos/:id/tarefas', 'TarefaController.criar').middleware('auth');
+  // Route.delete('projetos/:id', 'ProjetoController.deletar').middleware('auth');
+  // Route.patch('projetos/:id', 'ProjetoController.update').middleware('auth');  
 }).prefix("api/v1/");
