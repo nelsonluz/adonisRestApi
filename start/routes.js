@@ -30,6 +30,6 @@ Route.group(()=> {
   // rotas de tarefas
   Route.get('projetos/:id/tarefas', 'TarefaController.index').middleware('auth');
   Route.post('projetos/:id/tarefas', 'TarefaController.criar').middleware('auth');
-  // Route.delete('projetos/:id', 'ProjetoController.deletar').middleware('auth');
-  // Route.patch('projetos/:id', 'ProjetoController.update').middleware('auth');  
+  Route.delete('tarefas/:id', 'TarefaController.deletar').middleware('auth');
+  Route.patch('tarefas/:id', 'TarefaController.update').middleware('auth');  
 }).prefix("api/v1/");

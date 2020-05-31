@@ -8,7 +8,8 @@ class TarefaSchema extends Schema {
     this.create('tarefas', (table) => {
       table.increments()
       table.integer('projeto_id').unsigned().references('id').inTable('projetos')
-      table.string('descricao', 255).notNullable()      
+      table.string('descricao', 255).notNullable()
+      table.boolean('completada').defaultTo(false)       
       table.timestamps()
     })
   }

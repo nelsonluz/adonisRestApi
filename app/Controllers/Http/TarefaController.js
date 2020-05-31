@@ -28,6 +28,32 @@ class TarefaController {
         return tarefa;
     }
 
+
+    async update({ auth, request, params }){
+        const usuario = await auth.getUser();
+        const { id } = params;
+        const tarefa = await Tarefa.find(id);
+        const projeto = await  tarefa.projeto().fetch();
+        AutorizacionService.verificarPermiso(projeto, usuario)
+        await tarefa.merge(request.only([
+            "descricao",
+            "completada"
+        ]));
+        await tarefa.save();
+        return tarefa;
+    }
+
+
+    async deletar({ auth, request, params }){
+        const usuario = await auth.getUser();
+        const { id } = params;
+        const tarefa = await Tarefa.find(id);
+        const projeto = await  tarefa.projeto().fetch();
+        AutorizacionService.verificarPermiso(projeto, usuario)
+        await tarefa.delete();
+        return tarefa;
+    }
+
 }
 
 module.exports = TarefaController
