@@ -25,4 +25,5 @@ Route.group(()=> {
   Route.get('projetos', 'ProjetoController.index').middleware('auth');
   Route.post('projetos', 'ProjetoController.create').middleware('auth');
   Route.delete('projetos/:id', 'ProjetoController.deletar').middleware('auth');
+  Route.patch('projetos/:id', 'ProjetoController.update').middleware('auth');
 }).prefix("api/v1/");
